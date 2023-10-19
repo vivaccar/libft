@@ -1,39 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 17:54:26 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/19 12:30:41 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/19 17:58:16 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/19 18:45:20 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
+	unsigned char	*s1;
+	unsigned char	*s2;
 	size_t			i;
-	unsigned char	*p;
 
-	p = (unsigned char *)s;
+	s1 = (unsigned char *)str1;
+	s2 = (unsigned char *)str2;
 	i = 0;
-	while (i < n)
-	{
-		p[i] = c;
+	while (i < n && s1[i] == s2[i])
 		i++;
-	}
-	return (p);
+	if (n > i)
+		return (s1[i] - s2[i]);
+	else
+		return (0);
 }
 
-/*#include <stdio.h>
+/* #include <stdio.h>
+
 int	main(void)
 {
-	char	string[10];
-	size_t	size;
+	char	*str1 = "bom dia";
+	char	*str2 = "bom do";
+	char	*str3 = "";
+	char	*str4 = "";
+	char	*str5 = "";
+	char	*str6 = "";
 
-	size = sizeof(string);
-	ft_memset(string, 'A', size);
-	printf("%s", string);
-}*/
+	printf("%i\n", ft_memcmp(str1, str2, 5));
+} */

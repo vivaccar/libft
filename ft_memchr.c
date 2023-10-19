@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 17:54:26 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/19 12:30:41 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/19 17:22:59 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/19 17:57:38 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memchr(const void *str, int c, size_t n)
 {
+	unsigned char	*s;
 	size_t			i;
-	unsigned char	*p;
 
-	p = (unsigned char *)s;
+	c = (unsigned char)c;
 	i = 0;
+	s = (unsigned char *)str;
 	while (i < n)
 	{
-		p[i] = c;
+		if (s[i] == c)
+			return ((void *)&s[i]);
 		i++;
 	}
-	return (p);
+	return (NULL);
 }
 
-/*#include <stdio.h>
+/* #include <stdio.h>
+
 int	main(void)
 {
-	char	string[10];
-	size_t	size;
+	char	str[] = "procurando a letra";
+	char	c = 'c';
 
-	size = sizeof(string);
-	ft_memset(string, 'A', size);
-	printf("%s", string);
-}*/
+	printf("%s", (char *)ft_memchr(str, c, ft_strlen(str)));
+} */

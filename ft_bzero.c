@@ -6,7 +6,7 @@
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:02:52 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/18 19:16:10 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/19 12:34:49 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*p;
-	size_t			i;
-	
-	p = (unsigned char *)s;
+	char		*p;
+	size_t		i;
+
+	p = (char *)s;
 	i = 0;
 	while (i < n)
 	{
@@ -30,16 +30,11 @@ void	ft_bzero(void *s, size_t n)
 
 int	main(void)
 {
-	int		array[10];
+	char	string[] = "Vinicius";
 	size_t	size;
-	size_t	i;
 
-	size = sizeof(array);
-	i = 0;
-	ft_bzero(array, size);
-	while (i < size)
-	{
-		printf("%d", array[i]);
-		i++;
-	}
+	size = ft_strlen(string);
+	printf("antes: %s\n", string);
+	ft_bzero(string, size);
+	printf("depois: %s", string);
 }*/
