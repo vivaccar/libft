@@ -1,45 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 17:38:10 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/20 13:05:30 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/20 15:46:12 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/20 19:42:32 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
+	char	*str;
+	size_t	size;
 
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == 0)
+		return (NULL);
 	i = 0;
-	if (little[i] == '\0')
-		return ((char *)&big[i]);
-	while (i < len && big[i] != '\0')
+	j = 0;
+	while (s[i] != 0)
 	{
-		j = 0;
-		while (big[i + j] != '\0' && big[i + j] == little[j] && i + j < len)
+		if (i >= start && j < len)
 		{
-			if (little[j + 1] == '\0')
-				return ((char *)&big[i]);
+			str[j] = s[i];
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	str[j] = 0;
+	return (str);
 }
 
-/*#include <stdio.h>
+/* #include <stdio.h>
 
 int	main(void)
 {
-	char	p[] = "procure pela palavra igual";
-	char	a[] = "palavra";
-
-	printf("%s", ft_strnstr(p, a, 5));
-}*/
+	printf("%s", ft_substr("vinicius vaccari hehn", 4, 10));
+} */
