@@ -1,47 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 16:13:40 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/21 16:59:19 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/21 13:15:07 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/21 14:36:42 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	char	*str;
-
-	if (!*s1 && !*s2)
-		return (ft_strdup(""));
-	i = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	while (*s1)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
 	{
-		str[i] = *s1;
-		s1++;
-		i++;
+		ft_putchar_fd('-', fd);
+		n = -n;
+		ft_putnbr_fd(n, fd);
 	}
-	while (*s2)
+	else if (n >= 0 && n <= 9)
+		ft_putchar_fd(n + '0', fd);
+	else if (n > 9)
 	{
-		str[i] = *s2;
-		s2++;
-		i++;
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
 	}
-	str[i] = '\0';
-	return (str);
 }
 
-/* #include <stdio.h>
-
-int	main(void)
+/* int	main(void)
 {
-	printf("%s", ft_strjoin("vinicius", "vaccari"));
+	ft_putnbr_fd(-324, 1);
 } */
