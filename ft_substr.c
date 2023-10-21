@@ -6,7 +6,7 @@
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 15:46:12 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/20 19:42:32 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/21 15:37:42 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,26 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	char	*subst;
 	size_t	size;
 
+	if (!s)
+		return (NULL);
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
 	size = ft_strlen(s + start);
 	if (size < len)
 		len = size;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == 0)
+	subst = (char *)malloc(sizeof(char) * (len + 1));
+	if (!subst)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i] != 0)
-	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+	ft_strlcpy(subst, s + start, len + 1);
+	return (subst);
 }
 
 /* #include <stdio.h>
 
 int	main(void)
 {
-	printf("%s", ft_substr("vinicius vaccari hehn", 4, 10));
+	printf("%s", ft_substr("vinicius vaccari hehn", 4, 4));
 } */
