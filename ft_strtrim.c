@@ -3,27 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vinivaccari <vinivaccari@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:00:54 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/21 17:45:04 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:46:19 by vinivaccari      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trim;
 	size_t	i;
 	size_t	j;
 	
 	i = 0;
-	j = ft_strlen(j);
-	if (!*s1)
+	j = ft_strlen(s1) - 1;
+	if (!s1)
 		return(ft_strdup(""));
-	if (!*s2)
+	if (!set)
 		return(ft_strdup(s1));
-	if (ft_strncmp(s1, set, j) == 0)
-	{
-		while (ft_strncmp(s1[j]))
-	}
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (s1[j] && ft_strchr(set, s1[j]))
+		j--;
+	return(ft_substr(s1, i, j - i + 1));
 }
+
+/*#include <stdio.h>
+int main(void)
+{
+	printf("%s", ft_strtrim("Hello World!Hello", "Hello "));
+}*/
