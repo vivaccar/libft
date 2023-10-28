@@ -6,7 +6,7 @@
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 12:48:15 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/26 19:16:40 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/28 18:49:43 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,17 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-char    *ft_itoa(int n);
+char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 
+typedef struct	s_list
+{
+	void 			*content;
+	struct s_list 	*next;
+} 					t_list;
+
+t_list	*ft_lstnew(void *content);
 
 #endif
