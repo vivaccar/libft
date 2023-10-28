@@ -7,10 +7,13 @@ FILES	= 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			ft_substr.c ft_putchar_fd.c ft_putnbr_fd.c \
 			ft_putstr_fd.c ft_putendl_fd.c ft_strjoin.c \
 			ft_strtrim.c ft_itoa.c ft_split.c ft_strmapi.c \
-			
+			ft_striteri.c 
 
+BONUSFILES = ft_lstnew.c 
 
 OBJS	= $(FILES:.c=.o)
+
+BONUSOBJS = $(BONUSFILES:.c=.o)
 
 CC		= cc
 
@@ -23,10 +26,13 @@ all: $(NAME)
 $(NAME): $(OBJS)
 			ar rcs $(NAME) $(OBJS)
 
+bonus: $(OBJS) $(BONUSOBJS)
+			ar rcs $(NAME) $(OBJS) $(BONUSOBJS)
+
 clean:
-		rm -f $(NAME) $(OBJS)
+		rm -f $(OBJS) $(BONUSOBJS)
 
 fclean: clean
 		rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
