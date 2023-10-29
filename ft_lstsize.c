@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/28 17:19:27 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/29 12:16:51 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/29 13:28:49 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/29 13:44:24 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*new;
+	int	i;
 
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new -> content = content;
-	new -> next = NULL;
-	return (new);
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
 
 /* #include <stdio.h>
 
 int	main(void)
 {
-	char	*str;
-	t_list	*list;
-	
-	str = "Vinicius";
-	list = ft_lstnew(str);
-	printf("%s\n", (char *)list -> next);
-	printf("%s", (char *)list -> content);
+	t_list	*lst;
+	t_list	*second;
+	t_list	*third;
+
+	lst = malloc(sizeof(t_list));
+	second = malloc(sizeof(t_list));
+	third = malloc(sizeof(t_list));
+
+	lst->content = "1";
+	lst->next = second;
+	second->content = "2";
+	second->next = third;
+	third->content = "3";
+	third->next = NULL;
+	printf("%i", ft_lstsize(lst));
 } */

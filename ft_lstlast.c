@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 14:09:33 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/29 17:23:22 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/29 13:47:26 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/29 15:07:46 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
-/* int	main(void)
+/* #include <stdio.h>
+
+int	main(void)
 {
-	ft_putstr_fd("vinicius", 1);
-} */
+	t_list	*lst;
+
+	lst = ft_lstnew("the");
+	lst->next = ft_lstnew("last");
+	lst->next->next = ft_lstnew("node");
+	printf("%s", (char *)ft_lstlast(lst)->content);
+}
+ */
