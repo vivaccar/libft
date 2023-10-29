@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/21 14:09:33 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/29 18:18:09 by vivaccar         ###   ########.fr       */
+/*   Created: 2023/10/29 17:31:31 by vivaccar          #+#    #+#             */
+/*   Updated: 2023/10/29 18:15:04 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int	i;
-
-	i = 0;
-	if (s)
-		while (s[i] != '\0')
-			write(fd, &s[i++], 1);
+	del(lst->content);
+	free(lst);
 }
 
-/* int	main(void)
+/* void ft_delete(void *list)
 {
-	ft_putstr_fd("vinicius", 1);
+	t_list	*a;
+
+	a = (t_list *)list;
+	a->content = NULL;
+}
+#include<stdio.h>
+
+int main(void)
+{
+	t_list *list;
+
+	list = ft_lstnew("conteudo que vai ser apagado");
+	printf("%s\n", (char *)list->content);
+	ft_lstdelone(list, ft_delete);
+	printf("%s\n", (char *)list->content);
 } */
