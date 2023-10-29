@@ -6,7 +6,7 @@
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:53:05 by vinivaccari       #+#    #+#             */
-/*   Updated: 2023/10/28 17:07:42 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/29 19:02:15 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,52 +29,49 @@ static int	ft_count(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_free(char **str, int word)
+static int	ft_nextsize(char const *s, char c)
 {
-	while (word >= 0)
-	{	
-		free(str[word]);
-		word--;
-	}
-	free(str);
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
+}
+
+static char	**ft_free(char **s, int n)
+{
+	while (n >= 0)
+		free(s[n--]);
+	free(s);
 	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char				**result;
-	unsigned int		i;
-	unsigned int		j;
-	int					word;
+	char	**result;
+	int		j;
+	int		word;
 
-	word = 0;
+	word = ft_count(s, c);
+	result = ft_calloc (sizeof(char *), word + 1);
+	if (!s || !result)
+		return (NULL);
 	j = 0;
-	i = 0;
-	if (s == NULL)
-		return (NULL);
-	result = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
-	if (result == NULL)
-		return (NULL);
-	while (word < ft_count(s, c))
+	while (j < word)
 	{
-		while (s[i] == c)
-			i++;
-		j = i;
-		while (s[j] != c && s[j])
-			j++;
-		if (j > i)
+		if (*s != c)
 		{
-			result[word] = ft_substr(s, i, j - i);
-			if (result[word] == NULL)
-				return (ft_free(result, word));
+			result[j] = (char *)ft_calloc(sizeof(char), ft_nextsize(s, c) + 1);
+			if (!result[j])
+				return (ft_free(result, j));
+			ft_strlcpy(result[j], s, ft_nextsize(s, c) + 1);
+			s += ft_nextsize(s, c);
+			j++;
 		}
-		else
-			result[word] = NULL;
-		word++;
-		i = j;
+		s++;
 	}
-	result[word] = NULL;
-	return(result);
+	return (result);
 }
 
 /* #include <stdio.h>
