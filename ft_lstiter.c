@@ -6,7 +6,7 @@
 /*   By: vivaccar <vivaccar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 19:02:58 by vivaccar          #+#    #+#             */
-/*   Updated: 2023/10/29 19:24:52 by vivaccar         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:51:59 by vivaccar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,25 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	while (lst)
 	{
-		f(lst->content);
+		(*f)(lst->content);
 		lst = lst->next;
 	}
 }
 
-/* void	ft_iter(void *lst)
+/* #include <stdio.h> 
+
+void	ft_iter(void *content)
 {
-	char	*new;
-	
-	new = "Hello World!";
-	lst = new;
+	printf("%s\n", (char *)content);
 }
 
-#include <stdio.h>
-
-int	main(void)
+int main(void)
 {
 	t_list	*lst;
+
 	lst = ft_lstnew("hi");
 	lst->next = ft_lstnew("hola");
-	printf("1st: %s\n", (char *)lst->content);
-	printf("2nd: %s\n", (char *)lst->next->content);
-	ft_lstiter(lst, &ft_iter);
-	printf("1st: %s\n", (char *)lst->content);
-	printf("2nd: %s\n", (char *)lst->next->content);
+	lst->next->next = ft_lstnew("ola");
+	printf("%s\n", (char *)lst->content);
+	ft_lstiter(lst, (void *)&ft_iter);
 } */
